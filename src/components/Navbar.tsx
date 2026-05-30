@@ -45,15 +45,7 @@ const Navbar = () => {
         <a href="/#" className="navbar-title" data-cursor="disable">
           RWM
         </a>
-        <a
-          href="https://github.com/wayne2604"
-          className="navbar-connect"
-          data-cursor="disable"
-          target="_blank"
-          rel="noreferrer"
-        >
-          github.com/wayne2604
-        </a>
+
         <ul>
           <li>
             <a data-href="#about" href="#about">
@@ -63,6 +55,11 @@ const Navbar = () => {
           <li>
             <a data-href="#work" href="#work">
               <HoverLinks text="WORK" />
+            </a>
+          </li>
+          <li>
+            <a data-href="#experience" href="#experience">
+              <HoverLinks text="EXPERIENCE" />
             </a>
           </li>
           <li>

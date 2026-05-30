@@ -46,7 +46,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24 px-6 bg-transparent relative z-10 border-t border-white/5">
       <div className="container mx-auto max-w-4xl space-y-12">
-        
+
         {/* Section Header */}
         <div className="space-y-2 text-center md:text-left border-b border-white/5 pb-8">
           <span className="text-[10px] font-bold text-[#A7D129] tracking-[0.2em] uppercase">03 &mdash; Career</span>
@@ -57,13 +57,13 @@ export default function Experience() {
         <div className="relative pl-6 sm:pl-8 border-l border-white/10 space-y-12 ml-2 sm:ml-4">
           {experiencesList.map((exp, idx) => (
             <div key={idx} className="relative group">
-              
+
               {/* Timeline Indicator Dot */}
               <span className="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full border-2 border-[#616F39] bg-[#0c0c0c] z-10 transition-all duration-300 group-hover:border-[#A7D129] group-hover:scale-110 group-hover:shadow-[0_0_10px_rgba(167,209,41,0.5)]" />
-              
+
               {/* Experience Card */}
               <div className="bg-[#232121]/30 border border-white/5 rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:border-[#A7D129]/20 hover:shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:-translate-y-0.5 space-y-4">
-                
+
                 {/* Header Information */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-3">
                   <div className="space-y-1">

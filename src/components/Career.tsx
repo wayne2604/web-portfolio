@@ -2,7 +2,7 @@ import "./styles/Career.css";
 
 const Career = () => {
   return (
-    <div className="career-section section-container">
+    <div className="career-section section-container" id="experience">
       <div className="career-container">
         <h2>
           My career <span>&</span>
@@ -28,7 +28,7 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>OJT-Technical Support Intern</h4>
+                <h4>Technical Support</h4>
                 <h5>Sangguniang Panlungsod — Dapitan City</h5>
               </div>
               <h3>2025</h3>
