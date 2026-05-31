@@ -12,6 +12,8 @@ import {
 } from "./utils/mouseUtils";
 import setAnimations from "./utils/animationUtils";
 import { setProgress } from "../Loading";
+import { setCharTimeline, setAllTimeline } from "../utils/GsapScroll";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
@@ -54,8 +56,10 @@ const Scene = () => {
       const light = setLighting(scene);
       let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
+      let isUnmounted = false;
 
       loadCharacter().then((gltf) => {
+        if (isUnmounted) return;
         if (gltf) {
           const animations = setAnimations(gltf);
           hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
@@ -66,6 +70,8 @@ const Scene = () => {
           headBone = character.getObjectByName("Head") || character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
 
+          setCharTimeline(character, camera);
+          setAllTimeline();
 
           progress.loaded().then(() => {
             setTimeout(() => {
@@ -134,8 +140,22 @@ const Scene = () => {
       };
       animate();
       return () => {
+        isUnmounted = true;
         clearTimeout(debounce);
         scene.clear();
+        ScrollTrigger.getAll().forEach((t) => {
+          if (
+            [
+              ".landing-section",
+              ".about-section",
+              ".whatIDO",
+              ".career-section",
+              ".what-box-in",
+            ].includes(t.vars.trigger as string)
+          ) {
+            t.kill();
+          }
+        });
         renderer.dispose();
         window.removeEventListener("resize", () =>
           handleResize(renderer, camera, canvasDiv, character!)

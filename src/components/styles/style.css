@@ -3,6 +3,7 @@
   display: flex;
   text-wrap: nowrap;
   overflow: hidden;
+  color: inherit;
 }
 .hover-in {
   position: relative;

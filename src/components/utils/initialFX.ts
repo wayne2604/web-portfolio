@@ -35,32 +35,14 @@ export function initialFX() {
 
   let TextProps = { type: "chars,lines", linesClass: "split-h2" };
 
-  var landingText2 = new SplitText(".landing-h2-info", TextProps);
-  gsap.fromTo(
-    landingText2.chars,
-    { opacity: 0, y: 80, filter: "blur(5px)" },
-    {
-      opacity: 1,
-      duration: 1.2,
-      filter: "blur(0px)",
-      ease: "power3.inOut",
-      y: 0,
-      stagger: 0.025,
-      delay: 0.3,
-    }
-  );
+  var skillElements = gsap.utils.toArray(".landing-skill") as HTMLElement[];
+  var landingSkills = skillElements.map(el => new SplitText(el, TextProps));
 
-  gsap.fromTo(
-    ".landing-info-h2",
-    { opacity: 0, y: 30 },
-    {
-      opacity: 1,
-      duration: 1.2,
-      ease: "power1.inOut",
-      y: 0,
-      delay: 0.8,
-    }
-  );
+  applyGradientToSkills(skillElements);
+  window.addEventListener("resize", () => {
+    applyGradientToSkills(skillElements);
+  });
+
   gsap.fromTo(
     [".header", ".icons-section", ".nav-fade"],
     { opacity: 0 },
@@ -72,65 +54,78 @@ export function initialFX() {
     }
   );
 
-  var landingText3 = new SplitText(".landing-h2-info-1", TextProps);
-  var landingText4 = new SplitText(".landing-h2-1", TextProps);
-  var landingText5 = new SplitText(".landing-h2-2", TextProps);
-
-  LoopText(landingText2, landingText3);
-  LoopText(landingText4, landingText5);
+  LoopSkills(landingSkills);
 }
 
-function LoopText(Text1: SplitText, Text2: SplitText) {
-  var tl = gsap.timeline({ repeat: -1, repeatDelay: 1 });
-  const delay = 4;
-  const delay2 = delay * 2 + 1;
+function applyGradientToSkills(skillElements: HTMLElement[]) {
+  skillElements.forEach((target) => {
+    if (!target) return;
 
-  tl.fromTo(
-    Text2.chars,
-    { opacity: 0, y: 80 },
+    const gradientTextWrapper = target.querySelector(".gradient-text");
+    if (!gradientTextWrapper) return;
+
+    const chars = Array.from(gradientTextWrapper.querySelectorAll("div")) as HTMLElement[];
+    if (chars.length === 0) return;
+
+    const parentRect = gradientTextWrapper.getBoundingClientRect();
+    const W = parentRect.width;
+
+    chars.forEach((charEl) => {
+      const charRect = charEl.getBoundingClientRect();
+      const X = charRect.left - parentRect.left;
+
+      // Apply horizontal gradient stretching across the entire word
+      charEl.style.backgroundImage = "linear-gradient(to right, #A7D129, #000000)";
+      charEl.style.backgroundSize = `${W}px 100%`;
+      charEl.style.backgroundPosition = `${-X}px 0px`;
+      charEl.style.backgroundRepeat = "no-repeat";
+      charEl.style.webkitBackgroundClip = "text";
+      charEl.style.webkitTextFillColor = "transparent";
+      charEl.style.backgroundClip = "text";
+      charEl.style.color = "transparent";
+    });
+  });
+}
+
+function LoopSkills(skills: any[]) {
+  if (skills.length === 0) return;
+
+  skills.forEach((skill, index) => {
+    if (index !== 0) {
+      gsap.set(skill.chars, { opacity: 0, top: 80 });
+    }
+  });
+
+  gsap.fromTo(
+    skills[0].chars,
+    { opacity: 0, top: 80, filter: "blur(5px)" },
     {
       opacity: 1,
       duration: 1.2,
+      filter: "blur(0px)",
       ease: "power3.inOut",
-      y: 0,
-      stagger: 0.1,
-      delay: delay,
-    },
-    0
-  )
-    .fromTo(
-      Text1.chars,
-      { y: 80 },
-      {
-        duration: 1.2,
-        ease: "power3.inOut",
-        y: 0,
-        stagger: 0.1,
-        delay: delay2,
-      },
-      1
+      top: 0,
+      stagger: 0.025,
+      delay: 0.8,
+    }
+  );
+
+  var tl = gsap.timeline({ repeat: -1, delay: 4 });
+  const delay = 3;
+
+  skills.forEach((skill, index) => {
+    let nextSkill = skills[(index + 1) % skills.length];
+
+    tl.to(
+      skill.chars,
+      { opacity: 0, top: -80, duration: 1.2, ease: "power3.inOut", stagger: 0.05 }
     )
     .fromTo(
-      Text1.chars,
-      { y: 0 },
-      {
-        y: -80,
-        duration: 1.2,
-        ease: "power3.inOut",
-        stagger: 0.1,
-        delay: delay,
-      },
-      0
+      nextSkill.chars,
+      { opacity: 0, top: 80 },
+      { opacity: 1, top: 0, duration: 1.2, ease: "power3.inOut", stagger: 0.05 },
+      "<"
     )
-    .to(
-      Text2.chars,
-      {
-        y: -80,
-        duration: 1.2,
-        ease: "power3.inOut",
-        stagger: 0.1,
-        delay: delay2,
-      },
-      1
-    );
+    .set({}, {}, `+=${delay}`);
+  });
 }

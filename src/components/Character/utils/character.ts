@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
-import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
@@ -41,10 +40,6 @@ const setCharacter = (
             });
             
             resolve(gltf);
-            
-            // Connect to mouse hover and scroll timeline managers
-            setCharTimeline(character, camera);
-            setAllTimeline();
             
             // Standard Ready Player Me skeletal joints alignment - disabled to prevent leg distortion on standing rig
             // const footR = character.getObjectByName("RightFoot") || character.getObjectByName("footR");
