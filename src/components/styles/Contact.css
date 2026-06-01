@@ -7,104 +7,407 @@
   background-color: var(--backgroundColor);
 }
 
-.contact-section h3 {
-  font-size: 60px;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-.contact-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
-}
-
-.contact-box {
+/* ── Hero / CTA Area ── */
+.contact-hero {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 0 80px;
 }
 
-.contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
+.contact-headline {
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 50px;
+  letter-spacing: -1px;
 }
 
-a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
+.contact-headline em {
+  font-style: italic;
+  color: var(--accentColor);
 }
 
-.contact-box h2 {
+/* ── GET IN TOUCH Button ── */
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #F8EEB4;
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  margin-bottom: 50px;
+}
+
+.contact-cta svg {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.contact-cta:hover {
+  border-color: var(--accentColor);
+  color: var(--accentColor);
+  box-shadow: 0 0 25px rgba(167, 209, 41, 0.12);
+}
+
+.contact-cta:hover svg {
+  transform: translateX(5px);
+}
+
+/* ── Availability Text ── */
+.contact-availability {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 12px;
+  letter-spacing: 0.3px;
+}
+
+.contact-description {
+  font-size: 14px;
+  font-weight: 300;
+  color: #adacac;
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── Footer Credit ── */
+.contact-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-footer h3 {
   font-weight: 400;
   font-size: 23px;
   margin: 0;
 }
 
-.contact-box h2>span {
+.contact-footer h3>span {
   color: var(--accentColor);
 }
 
-.contact-box h5 {
+.contact-footer h5 {
   font-size: 20px;
   font-weight: 500;
   line-height: 20px;
   display: flex;
   gap: 10px;
   opacity: 0.5;
+  margin: 0;
 }
 
+/* ═══════════════════════════════════
+   REACH OUT MODAL
+   ═══════════════════════════════════ */
+
+.reachout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.reachout-overlay.reachout-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reachout-modal {
+  width: 90%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 36px 40px;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reachout-open .reachout-modal {
+  transform: translateY(0) scale(1);
+}
+
+/* scrollbar */
+.reachout-modal::-webkit-scrollbar {
+  width: 4px;
+}
+.reachout-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.reachout-modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* ── Modal Header ── */
+.reachout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.reachout-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--accentColor);
+}
+
+.reachout-subtitle {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin: 6px 0 0;
+}
+
+.reachout-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Geist", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  padding: 4px 0;
+}
+
+.reachout-close svg {
+  font-size: 18px;
+}
+
+.reachout-close:hover {
+  color: #F8EEB4;
+}
+
+/* ── Form Card ── */
+.reachout-form-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 28px 28px 24px;
+  margin-bottom: 20px;
+}
+
+.reachout-form-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+
+.reachout-form-sub {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.35;
+  margin: 0 0 24px;
+}
+
+/* ── Form ── */
+.reachout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reachout-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reachout-field label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.reachout-field input,
+.reachout-field textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 14px 14px;
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #F8EEB4;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.reachout-field input::placeholder,
+.reachout-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 300;
+}
+
+.reachout-field input:focus,
+.reachout-field textarea:focus {
+  border-color: rgba(167, 209, 41, 0.4);
+  box-shadow: 0 0 12px rgba(167, 209, 41, 0.06);
+}
+
+.reachout-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ── Send Message Button ── */
+.reachout-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 0;
+  background: rgba(167, 209, 41, 0.08);
+  border: 1px solid rgba(167, 209, 41, 0.2);
+  border-radius: 4px;
+  color: #F8EEB4;
+  font-family: "Geist", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  margin-top: 4px;
+}
+
+.reachout-submit svg {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.reachout-submit:hover {
+  background: rgba(167, 209, 41, 0.15);
+  border-color: var(--accentColor);
+  color: var(--accentColor);
+  box-shadow: 0 0 20px rgba(167, 209, 41, 0.1);
+}
+
+.reachout-submit:hover svg {
+  transform: translateX(4px);
+}
+
+.reachout-submit-sent {
+  border-color: var(--accentColor);
+  color: var(--accentColor);
+}
+
+/* ── Bottom Info Cards ── */
+.reachout-info-row {
+  display: flex;
+  gap: 16px;
+}
+
+.reachout-info-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reachout-info-card:hover {
+  border-color: rgba(167, 209, 41, 0.25);
+  box-shadow: 0 0 16px rgba(167, 209, 41, 0.06);
+  color: inherit;
+}
+
+.reachout-info-card h5 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--accentColor);
+}
+
+.reachout-info-card p {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin: 0;
+}
+
+.reachout-info-icon {
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.6;
+}
+
+.reachout-email-text {
+  font-size: 12px;
+  font-weight: 300;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
+/* ── Responsive ── */
 @media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
+  .contact-headline {
+    font-size: 54px;
   }
 
-  .contact-box h2 {
+  .contact-footer h3 {
     font-size: 20px;
-  }
-
-  a.contact-social {
-    font-size: 22px;
   }
 }
 
 @media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
+  .contact-headline {
+    font-size: 44px;
   }
 
-  .contact-box h2 {
+  .contact-footer h3 {
     font-size: 18px;
-  }
-
-  a.contact-social {
-    font-size: 20px;
-  }
-
-  .contact-flex p {
-    margin-top: 0px;
   }
 }
 
 @media only screen and (max-width: 900px) {
-  .contact-flex {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-
-  .contact-flex h4 {
-    margin-top: 20px;
-  }
-
   .contact-section {
     margin-top: 50px;
     padding-bottom: 50px;
@@ -112,5 +415,59 @@ a.contact-social {
 
   .contact-container {
     width: calc(100% - 25px);
+  }
+
+  .contact-headline {
+    font-size: 34px;
+    margin-bottom: 35px;
+  }
+
+  .contact-cta {
+    padding: 14px 30px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 35px;
+  }
+
+  .contact-availability {
+    font-size: 15px;
+  }
+
+  .contact-description {
+    font-size: 13px;
+  }
+
+  .contact-description br {
+    display: none;
+  }
+
+  .contact-hero {
+    padding: 30px 0 50px;
+  }
+
+  .contact-footer {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 30px;
+    padding-top: 30px;
+  }
+
+  /* Modal responsive */
+  .reachout-modal {
+    width: 95%;
+    padding: 24px 20px;
+  }
+
+  .reachout-form-card {
+    padding: 20px 18px;
+  }
+
+  .reachout-info-row {
+    flex-direction: column;
+  }
+
+  .reachout-title {
+    font-size: 24px;
   }
 }

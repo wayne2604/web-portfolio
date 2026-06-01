@@ -2,26 +2,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
-const imageUrlsRow1 = [
-  "/Icons/react.png",
-  "/Icons/pic.png",
-  "/Icons/arduino.png",
-  "/Icons/php.png",
-  "/Icons/js.png",
-  "/Icons/kotlin.png",
-  "/Icons/SQL.png",
-  "/Icons/supabase.png",
+const techRow1 = [
+  { icon: "/Icons/react.png", name: "React" },
+  { icon: "/Icons/pic.png", name: "PIC" },
+  { icon: "/Icons/arduino.png", name: "Arduino" },
+  { icon: "/Icons/php.png", name: "PHP" },
+  { icon: "/Icons/js.png", name: "JavaScript" },
+  { icon: "/Icons/kotlin.png", name: "Kotlin" },
+  { icon: "/Icons/SQL.png", name: "SQL" },
+  { icon: "/Icons/supabase.png", name: "Supabase" },
 ];
 
-const imageUrlsRow2 = [
-  "/Icons/firebase.png",
-  "/Icons/make.png",
-  "/Icons/circleback.png",
-  "/Icons/Sketchup.jpg",
-  "/Icons/python.png",
-  "/Icons/html.png",
-  "/Icons/css.png",
-  "/Icons/slack.png",
+const techRow2 = [
+  { icon: "/Icons/firebase.png", name: "Firebase" },
+  { icon: "/Icons/make.png", name: "Make.com" },
+  { icon: "/Icons/circleback.png", name: "Circleback" },
+  { icon: "/Icons/Sketchup.jpg", name: "SketchUp" },
+  { icon: "/Icons/python.png", name: "Python" },
+  { icon: "/Icons/html.png", name: "HTML5" },
+  { icon: "/Icons/css.png", name: "CSS3" },
+  { icon: "/Icons/slack.png", name: "Slack" },
 ];
 
 const TechStack = () => {
@@ -29,7 +29,8 @@ const TechStack = () => {
     <div className="techstack">
       <h2> My Techstack</h2>
       <div className="tech-slider-container">
-        
+        <div className="tech-slider-gradient"></div>
+
         {/* Top Row */}
         <Swiper
           modules={[Autoplay]}
@@ -49,10 +50,11 @@ const TechStack = () => {
           }}
           className="mySwiper tech-row-1"
         >
-          {imageUrlsRow1.map((url, i) => (
+          {techRow1.map((tech, i) => (
             <SwiperSlide key={i}>
               <div className="tech-slide">
-                <img src={url} alt={`Tech icon ${i}`} />
+                <img src={tech.icon} alt={tech.name} />
+                <span className="tech-label">{tech.name}</span>
               </div>
             </SwiperSlide>
           ))}
@@ -76,10 +78,11 @@ const TechStack = () => {
           }}
           className="mySwiper tech-row-2"
         >
-          {imageUrlsRow2.map((url, i) => (
+          {techRow2.map((tech, i) => (
             <SwiperSlide key={i}>
               <div className="tech-slide">
-                <img src={url} alt={`Tech icon ${i}`} />
+                <img src={tech.icon} alt={tech.name} />
+                <span className="tech-label">{tech.name}</span>
               </div>
             </SwiperSlide>
           ))}

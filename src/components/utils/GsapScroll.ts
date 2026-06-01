@@ -151,59 +151,71 @@ export function setCharTimeline(
 }
 
 export function setAllTimeline() {
-  const careerTimeline = gsap.timeline({
+  // Animate the line tracking the center of the screen through the career-info container
+  gsap.fromTo(
+    ".career-timeline",
+    { maxHeight: "0%", opacity: 0 },
+    {
+      maxHeight: "100%",
+      opacity: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".career-info",
+        start: "top center",
+        end: "bottom center",
+        scrub: 0.5, // Smooth scrubbing
+        invalidateOnRefresh: true,
+      },
+    }
+  );
+
+  gsap.to(".career-dot", {
+    animationIterationCount: "1",
     scrollTrigger: {
-      trigger: ".career-section",
-      start: "top 30%",
-      end: "100% center",
-      scrub: true,
-      invalidateOnRefresh: true,
+      trigger: ".career-info",
+      start: "top center",
+      once: true,
     },
   });
 
-  careerTimeline
-    .fromTo(
-      ".career-timeline",
-      { maxHeight: "10%" },
-      { maxHeight: "100%", duration: 0.5 },
-      0
-    )
-    .fromTo(
-      ".career-timeline",
-      { opacity: 0 },
-      { opacity: 1, duration: 0.1 },
-      0
-    )
-    .fromTo(
-      ".career-info-box",
-      { opacity: 0 },
-      { opacity: 1, stagger: 0.1, duration: 0.5 },
-      0
-    )
-    .fromTo(
-      ".career-dot",
-      { animationIterationCount: "infinite" },
+  // Animate each box individually when it reaches the screen
+  const boxes = document.querySelectorAll(".career-info-box");
+  boxes.forEach((box) => {
+    gsap.fromTo(
+      box,
+      { opacity: 0, y: 50 },
       {
-        animationIterationCount: "1",
-        delay: 0.3,
-        duration: 0.1,
-      },
-      0
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: box,
+          start: "top 75%", // Triggers slightly before reaching the center
+          end: "center center",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      }
     );
+  });
 
+  // Parallax effect for the entire section
   if (window.innerWidth > 1024) {
-    careerTimeline.fromTo(
+    gsap.fromTo(
       ".career-section",
       { y: 0 },
-      { y: "20%", duration: 0.5, delay: 0.2 },
-      0
-    );
-  } else {
-    careerTimeline.fromTo(
-      ".career-section",
-      { y: 0 },
-      { y: 0, duration: 0.5, delay: 0.2 },
-      0
+      {
+        y: "15%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".career-section",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      }
     );
   }
 }
