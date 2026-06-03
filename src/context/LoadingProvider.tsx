@@ -11,6 +11,8 @@ interface LoadingType {
   isLoading: boolean;
   setIsLoading: (state: boolean) => void;
   setLoading: (percent: number) => void;
+  activeProject: any | null;
+  setActiveProject: (project: any | null) => void;
 }
 
 export const LoadingContext = createContext<LoadingType | null>(null);
@@ -18,12 +20,16 @@ export const LoadingContext = createContext<LoadingType | null>(null);
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);
   const [loading, setLoading] = useState(0);
+  const [activeProject, setActiveProject] = useState<any | null>(null);
 
   const value = {
     isLoading,
     setIsLoading,
     setLoading,
+    activeProject,
+    setActiveProject,
   };
+
   useEffect(() => {}, [loading]);
 
   return (

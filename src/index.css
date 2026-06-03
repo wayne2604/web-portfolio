@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+@theme {
+  --color-background: var(--backgroundColor);
+  --color-primary: var(--accentColor);
+  --color-card: rgba(255, 255, 255, 0.02);
+  --color-card-foreground: #F8EEB4;
+  --color-muted: rgba(248, 238, 180, 0.15);
+  --color-muted-foreground: rgba(248, 238, 180, 0.6);
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-secondary: rgba(255, 255, 255, 0.05);
+  --color-secondary-foreground: #F8EEB4;
+}
+
 
 :root {
   font-family: "Geist", sans-serif;

@@ -1,0 +1,438 @@
+.project-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  color: #F8EEB4;
+  z-index: 9999;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Scrollbar styling for description view */
+.project-details-overlay::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-details-overlay::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+.project-details-overlay::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.project-details-overlay::-webkit-scrollbar-thumb:hover {
+  background: var(--accentColor);
+}
+
+.project-details-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Breadcrumbs Navigation ── */
+.project-details-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Geist", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(248, 238, 180, 0.4);
+  margin-bottom: 48px;
+}
+
+.nav-back-btn,
+.nav-link-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: rgba(248, 238, 180, 0.4);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.3s ease;
+}
+
+.nav-back-btn:hover,
+.nav-link-btn:hover {
+  color: #F8EEB4;
+}
+
+.nav-separator {
+  opacity: 0.3;
+}
+
+.nav-active-item {
+  color: var(--accentColor);
+  font-weight: 600;
+}
+
+/* ── Typography (Using portfolio Geist font) ── */
+.project-details-title {
+  font-size: 72px;
+  font-weight: 400;
+  font-family: "Geist", sans-serif;
+  color: #F8EEB4;
+  margin-top: 0;
+  margin-bottom: 28px;
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.project-details-hero-desc {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(248, 238, 180, 0.75);
+  max-width: 900px;
+  margin: 0 0 54px;
+}
+
+/* ── Metadata Grid ── */
+.project-details-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meta-label {
+  font-family: "Geist", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(248, 238, 180, 0.4);
+  text-transform: uppercase;
+}
+
+.meta-value {
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #F8EEB4;
+}
+
+/* ── Divider Line ── */
+.project-details-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  margin-bottom: 32px;
+}
+
+/* ── Tags and Links Row ── */
+.project-details-tags-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-tag-badge {
+  font-family: "Geist", sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: rgba(248, 238, 180, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 12px;
+  border-radius: 0;
+}
+
+.action-links-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.action-icon-link,
+.copy-url-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: rgba(248, 238, 180, 0.8);
+  font-family: "Geist", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.action-icon-link:hover,
+.copy-url-btn:hover {
+  color: var(--accentColor);
+}
+
+/* ── Statistics Grid Box ── */
+.project-details-stats-box {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 48px;
+  margin-bottom: 48px;
+}
+
+.stats-inner-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-number {
+  font-family: "Geist", sans-serif;
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  color: #F8EEB4;
+  letter-spacing: -1.5px;
+}
+
+.stat-subtitle {
+  font-family: "Geist", sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(248, 238, 180, 0.4);
+  text-transform: uppercase;
+}
+
+/* ── Case Study Sections (Fiscplus details layout) ── */
+.project-details-case-study {
+  margin-top: 24px;
+}
+
+.case-study-block {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 72px 0;
+}
+
+.case-study-left {
+  position: sticky;
+  top: 90px;
+  align-self: start;
+}
+
+.case-study-num {
+  display: block;
+  font-family: "Geist", monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(248, 238, 180, 0.4);
+  margin-bottom: 12px;
+}
+
+.case-study-block-title {
+  font-family: "Geist", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: #F8EEB4;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.case-study-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.case-study-paragraphs {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.case-study-paragraphs p {
+  font-family: "Geist", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(248, 238, 180, 0.65);
+  margin: 0;
+}
+
+.case-study-image-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.01);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-subtitle {
+  font-family: "Geist", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(248, 238, 180, 0.4);
+  text-transform: uppercase;
+}
+
+.key-decisions-lead-text {
+  font-family: "Geist", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(248, 238, 180, 0.65);
+  margin: 0 0 16px;
+  max-width: 600px;
+}
+
+.key-decisions-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.decision-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 24px 0;
+}
+
+.decision-title {
+  font-family: "Geist", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #F8EEB4;
+  margin: 0 0 8px;
+}
+
+.decision-desc {
+  font-family: "Geist", sans-serif;
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(248, 238, 180, 0.6);
+  margin: 0;
+  max-width: 600px;
+}
+
+/* ── Responsive design ── */
+@media only screen and (max-width: 1024px) {
+  .project-details-overlay {
+    padding: 48px 20px;
+  }
+
+  .project-details-title {
+    font-size: 56px;
+  }
+
+  .project-details-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  .stats-inner-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 24px;
+  }
+
+  .project-details-stats-box {
+    padding: 32px;
+  }
+
+  .case-study-block {
+    gap: 24px;
+  }
+
+  .case-study-block-title {
+    font-size: 28px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .project-details-tags-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .project-details-title {
+    font-size: 44px;
+  }
+
+  .project-details-hero-desc {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .case-study-block {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 48px 0;
+  }
+
+  .case-study-left {
+    position: static;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .project-details-meta-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .stats-inner-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .project-details-title {
+    font-size: 36px;
+  }
+
+  .action-links-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

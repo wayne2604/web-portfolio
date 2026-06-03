@@ -43,7 +43,7 @@ const Navbar = () => {
     <>
       <div className="header">
         <a href="/#" className="navbar-title" data-cursor="disable">
-          RWM
+          <img src="/logo-rwm.svg" alt="RWM" style={{ height: 28 }} />
         </a>
 
         <ul>
@@ -53,15 +53,16 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a data-href="#work" href="#work">
-              <HoverLinks text="WORK" />
-            </a>
-          </li>
-          <li>
             <a data-href="#experience" href="#experience">
               <HoverLinks text="EXPERIENCE" />
             </a>
           </li>
+          <li>
+            <a data-href="#work" href="#work">
+              <HoverLinks text="WORK" />
+            </a>
+          </li>
+          
           <li>
             <a data-href="#contact" href="#contact">
               <HoverLinks text="CONTACT" />

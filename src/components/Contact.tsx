@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MdArrowForward, MdCopyright, MdClose, MdEmail } from "react-icons/md";
+import { MdArrowForward, MdClose, MdEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import "./styles/Contact.css";
 
@@ -59,19 +59,6 @@ const Contact = () => {
             <br />
             seamless user experiences.
           </p>
-        </div>
-
-        <div className="contact-footer">
-          <div className="contact-footer-left">
-            <h3>
-              Designed and Developed <br /> by <span>Rhett Wayne Manubag</span>
-            </h3>
-          </div>
-          <div className="contact-footer-right">
-            <h5>
-              <MdCopyright /> {new Date().getFullYear()}
-            </h5>
-          </div>
         </div>
       </div>
 
