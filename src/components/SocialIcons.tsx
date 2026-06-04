@@ -69,17 +69,29 @@ const SocialIcons = () => {
           </a>
         </span>
         <span>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.facebook.com/share/1CfGPicueW/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaFacebook />
           </a>
         </span>
         <span>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.instagram.com/wayneer26?igsh=cGp0dzh3cjh5ZTJu&utm_source=qr"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaInstagram />
           </a>
         </span>
         <span>
-          <a href="#" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/in/rhett-wayne-manubag-207654319/"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FaLinkedin />
           </a>
         </span>

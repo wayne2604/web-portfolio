@@ -169,21 +169,29 @@
 }
 
 /* ═══════════════════════════════════
-   REACH OUT MODAL
+   REACH OUT MODAL — LUXURY EDITION
    ═══════════════════════════════════ */
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
 
 .reachout-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reachout-overlay.reachout-open {
@@ -191,118 +199,223 @@
   visibility: visible;
 }
 
+/* ── Modal Container with rotating glow border ── */
 .reachout-modal {
+  position: relative;
   width: 90%;
-  max-width: 580px;
-  max-height: 90vh;
+  max-width: 640px;
+  max-height: 88vh;
   overflow-y: auto;
-  background: #0a0a0a;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 36px 40px;
-  transform: translateY(30px) scale(0.97);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE/Edge */
+  background: linear-gradient(
+    168deg,
+    rgba(10, 10, 10, 0.98) 0%,
+    rgba(5, 5, 5, 0.99) 50%,
+    rgba(10, 10, 10, 0.98) 100%
+  );
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 44px 42px;
+  transform: translateY(40px) scale(0.96);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.5s ease;
+  box-sizing: border-box;
+  box-shadow:
+    0 24px 80px -12px rgba(0, 0, 0, 0.7),
+    0 0 60px -20px rgba(167, 209, 41, 0.08);
+  /* rotating glow border */
+  --border-angle: 0deg;
+  background-image:
+    linear-gradient(
+      168deg,
+      rgba(10, 10, 10, 0.98) 0%,
+      rgba(5, 5, 5, 0.99) 50%,
+      rgba(10, 10, 10, 0.98) 100%
+    ),
+    conic-gradient(
+      from var(--border-angle),
+      transparent 25%,
+      rgba(248, 238, 180, 0.5) 37%,
+      rgba(248, 238, 180, 0.7) 40%,
+      rgba(167, 209, 41, 0.5) 43%,
+      transparent 55%,
+      transparent 80%,
+      rgba(248, 238, 180, 0.15) 90%,
+      transparent 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: rotate-border-glow 5s linear infinite;
+}
+
+/* hide scrollbar — Webkit */
+.reachout-modal::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes rotate-border-glow {
+  to {
+    --border-angle: 360deg;
+  }
 }
 
 .reachout-open .reachout-modal {
   transform: translateY(0) scale(1);
-}
-
-/* scrollbar */
-.reachout-modal::-webkit-scrollbar {
-  width: 4px;
-}
-.reachout-modal::-webkit-scrollbar-track {
-  background: transparent;
-}
-.reachout-modal::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  box-shadow:
+    0 32px 100px -16px rgba(0, 0, 0, 0.8),
+    0 0 80px -24px rgba(167, 209, 41, 0.15),
+    0 0 40px -8px rgba(248, 238, 180, 0.05);
 }
 
 /* ── Modal Header ── */
 .reachout-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 32px;
+  align-items: center;
+  border-bottom: 1px solid rgba(248, 238, 180, 0.06);
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+}
+
+.reachout-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .reachout-title {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 34px;
+  font-weight: 400;
+  font-style: italic;
   margin: 0;
-  color: var(--accentColor);
+  color: #F8EEB4;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
 }
 
-.reachout-subtitle {
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  opacity: 0.4;
-  margin: 6px 0 0;
+/* ── Typewriter Animation ── */
+.typewriter-viewport {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+.typewriter-text {
+  color: var(--accentColor);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background-color: var(--accentColor);
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: typewriter-blink 1s step-end infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .reachout-close {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: "Geist", sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 2px;
+  border: 1px solid rgba(248, 238, 180, 0.1);
+  border-radius: 50%;
+  color: rgba(248, 238, 180, 0.5);
   cursor: pointer;
-  transition: color 0.25s ease;
-  padding: 4px 0;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reachout-close svg {
-  font-size: 18px;
+  display: block;
+  width: 18px;
+  height: 18px;
 }
 
 .reachout-close:hover {
   color: #F8EEB4;
+  border-color: rgba(248, 238, 180, 0.35);
+  background: rgba(248, 238, 180, 0.05);
+  transform: rotate(90deg) scale(1.05);
+  box-shadow: 0 0 16px rgba(248, 238, 180, 0.04);
 }
 
 /* ── Form Card ── */
 .reachout-form-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 8px;
-  padding: 28px 28px 24px;
-  margin-bottom: 20px;
+  border: 1px solid rgba(248, 238, 180, 0.06);
+  background: rgba(248, 238, 180, 0.015);
+  padding: 36px 32px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle radial highlight in form card */
+.reachout-form-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle at top right,
+    rgba(167, 209, 41, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.reachout-form-header {
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
 }
 
 .reachout-form-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 2px;
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  color: #F8EEB4;
+  margin: 0 0 4px;
 }
 
 .reachout-form-sub {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  opacity: 0.35;
-  margin: 0 0 24px;
+  color: rgba(248, 238, 180, 0.3);
+  margin: 0;
 }
 
 /* ── Form ── */
 .reachout-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
+  position: relative;
+  z-index: 1;
 }
 
 .reachout-field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .reachout-field label {
@@ -310,62 +423,96 @@
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.5;
+  color: rgba(248, 238, 180, 0.45);
+  transition: color 0.3s ease;
+}
+
+.reachout-field:focus-within label {
+  color: #F8EEB4;
 }
 
 .reachout-field input,
 .reachout-field textarea {
   width: 100%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  padding: 14px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(248, 238, 180, 0.08);
+  border-radius: 8px;
+  padding: 16px 18px;
   font-family: "Geist", sans-serif;
   font-size: 14px;
   font-weight: 300;
   color: #F8EEB4;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              background 0.3s ease;
   box-sizing: border-box;
 }
 
 .reachout-field input::placeholder,
 .reachout-field textarea::placeholder {
-  color: rgba(255, 255, 255, 0.2);
+  color: rgba(248, 238, 180, 0.18);
   font-weight: 300;
 }
 
 .reachout-field input:focus,
 .reachout-field textarea:focus {
-  border-color: rgba(167, 209, 41, 0.4);
-  box-shadow: 0 0 12px rgba(167, 209, 41, 0.06);
+  border-color: rgba(248, 238, 180, 0.25);
+  background: rgba(248, 238, 180, 0.02);
+  box-shadow:
+    0 0 0 3px rgba(248, 238, 180, 0.04),
+    0 0 20px rgba(167, 209, 41, 0.06);
 }
 
 .reachout-field textarea {
-  resize: vertical;
-  min-height: 100px;
+  resize: none;
+  min-height: 110px;
 }
 
-/* ── Send Message Button ── */
+/* ── Submit Button ── */
 .reachout-submit {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   width: 100%;
-  padding: 16px 0;
-  background: rgba(167, 209, 41, 0.08);
-  border: 1px solid rgba(167, 209, 41, 0.2);
-  border-radius: 4px;
-  color: #F8EEB4;
+  padding: 20px 0;
+  background: linear-gradient(135deg, #F8EEB4 0%, var(--accentColor) 100%);
+  border: none;
+  border-radius: 8px;
+  color: #000000;
   font-family: "Geist", sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.35s ease;
+  overflow: hidden;
   margin-top: 4px;
+}
+
+/* shimmer sweep effect */
+.reachout-submit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.reachout-submit:hover::after {
+  left: 100%;
 }
 
 .reachout-submit svg {
@@ -374,10 +521,9 @@
 }
 
 .reachout-submit:hover {
-  background: rgba(167, 209, 41, 0.15);
-  border-color: var(--accentColor);
-  color: var(--accentColor);
-  box-shadow: 0 0 20px rgba(167, 209, 41, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #F8EEB4 100%);
+  box-shadow: 0 8px 32px rgba(248, 238, 180, 0.2);
+  transform: translateY(-1px);
 }
 
 .reachout-submit:hover svg {
@@ -385,63 +531,133 @@
 }
 
 .reachout-submit-sent {
-  border-color: var(--accentColor);
-  color: var(--accentColor);
+  background: linear-gradient(135deg, #ffffff 0%, #F8EEB4 100%);
 }
 
-/* ── Bottom Info Cards ── */
-.reachout-info-row {
-  display: flex;
-  gap: 16px;
+/* ── Secondary Actions Grid ── */
+.reachout-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
 }
 
-.reachout-info-card {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 8px;
-  padding: 20px;
+.reachout-action-card {
+  border: 1px solid rgba(248, 238, 180, 0.06);
+  background: rgba(248, 238, 180, 0.015);
+  padding: 28px 24px;
+  border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  justify-content: space-between;
+  min-height: 130px;
+  box-sizing: border-box;
 }
 
-.reachout-info-card:hover {
-  border-color: rgba(167, 209, 41, 0.25);
-  box-shadow: 0 0 16px rgba(167, 209, 41, 0.06);
+.reachout-action-card:hover {
+  border-color: rgba(248, 238, 180, 0.15);
+  background: rgba(248, 238, 180, 0.03);
   color: inherit;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-.reachout-info-card h5 {
-  font-size: 14px;
-  font-weight: 600;
+.reachout-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reachout-card-title {
+  font-size: 19px;
+  font-weight: 400;
+  font-style: italic;
+  color: #F8EEB4;
   margin: 0;
+}
+
+.reachout-card-subtitle {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(248, 238, 180, 0.3);
+  margin: 0;
+}
+
+.reachout-card-arrow {
+  font-size: 22px;
+  color: rgba(248, 238, 180, 0.4);
+  align-self: flex-start;
+  transition: all 0.35s ease;
+}
+
+.reachout-action-card:hover .reachout-card-arrow {
+  transform: translateX(8px);
   color: var(--accentColor);
 }
 
-.reachout-info-card p {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  opacity: 0.4;
-  margin: 0;
-}
-
-.reachout-info-icon {
-  font-size: 18px;
-  margin-top: 10px;
-  opacity: 0.6;
-}
-
-.reachout-email-text {
+.reachout-card-email-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
-  font-weight: 300;
-  opacity: 0.5;
-  margin-top: 2px;
+  color: rgba(248, 238, 180, 0.6);
+  text-decoration: none;
+  margin-top: 14px;
+  transition: color 0.3s ease;
+  font-family: "Geist", monospace;
+  letter-spacing: 0.3px;
+}
+
+.reachout-card-email-link svg {
+  color: var(--accentColor);
+  flex-shrink: 0;
+}
+
+.reachout-card-email-link:hover {
+  color: #F8EEB4;
+}
+
+/* ── Modal Footer ── */
+.reachout-footer {
+  border-top: 1px solid rgba(248, 238, 180, 0.06);
+  padding-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.reachout-footer a {
+  position: relative;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(248, 238, 180, 0.35);
+  transition: color 0.3s ease;
+}
+
+.reachout-footer a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accentColor);
+  transition: width 0.3s ease;
+}
+
+.reachout-footer a:hover {
+  color: #F8EEB4;
+}
+
+.reachout-footer a:hover::after {
+  width: 100%;
 }
 
 /* ── Responsive ── */
@@ -449,7 +665,6 @@
   .contact-headline {
     font-size: 54px;
   }
-
   .contact-footer h3 {
     font-size: 20px;
   }
@@ -459,7 +674,6 @@
   .contact-headline {
     font-size: 44px;
   }
-
   .contact-footer h3 {
     font-size: 18px;
   }
@@ -514,18 +728,32 @@
   /* Modal responsive */
   .reachout-modal {
     width: 95%;
-    padding: 24px 20px;
+    padding: 28px 22px;
+    border-radius: 12px;
   }
 
   .reachout-form-card {
-    padding: 20px 18px;
+    padding: 24px 20px;
+    border-radius: 10px;
   }
 
-  .reachout-info-row {
-    flex-direction: column;
+  .reachout-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .reachout-action-card {
+    padding: 22px 20px;
+    min-height: 110px;
+    border-radius: 10px;
   }
 
   .reachout-title {
-    font-size: 24px;
+    font-size: 28px;
+  }
+
+  .reachout-header {
+    padding-bottom: 20px;
+    margin-bottom: 28px;
   }
 }

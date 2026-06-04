@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Circular Black Background -->
+  <circle cx="100" cy="100" r="98" fill="#000000" />
+  
+  <!-- Letters Group translated to center -->
+  <g transform="translate(6, 70)">
+    <!-- R -->
+    <g>
+      <path d="M10 50V10h18c8.5 0 14 5 14 12.5S36.5 35 28 35l14 15h-8L21 35h-3v15h-8z" fill="#F8EEB4"/>
+      <path d="M18 17v11h9c4 0 7-2.5 7-5.5S31 17 27 17h-9z" fill="#000000"/>
+    </g>
+    
+    <!-- W -->
+    <g>
+      <path d="M58 10l10 30 10-22 10 22 10-30h8L92 50h-1L81 28 71 50h-1L56 10h8z" fill="#F8EEB4"/>
+    </g>
+    
+    <!-- M -->
+    <g>
+      <path d="M120 50V10h6l20 28 20-28h6v40h-8V22l-16 23h-4L128 22v28h-8z" fill="#A7D129"/>
+    </g>
+  </g>
+</svg>

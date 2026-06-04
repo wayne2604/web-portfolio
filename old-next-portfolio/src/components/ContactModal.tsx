@@ -10,7 +10,7 @@ interface ContactModalProps {
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(""); x``
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -76,7 +76,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-fade-in">
       <div className="relative w-full max-w-lg bg-[#0c0c0c] border border-white/10 rounded-3xl p-6 sm:p-8 overflow-hidden shadow-2xl flex flex-col">
-        
+
         {/* Background Accent Blur */}
         <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-[#A7D129]/5 blur-[60px] pointer-events-none" />
 
@@ -143,11 +143,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {/* Feedback Banners */}
           {status.text && (
             <div
-              className={`p-4 rounded-xl flex items-center gap-3 text-xs font-semibold ${
-                status.type === "success"
+              className={`p-4 rounded-xl flex items-center gap-3 text-xs font-semibold ${status.type === "success"
                   ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
                   : "bg-amber-500/10 border border-amber-500/20 text-amber-400"
-              }`}
+                }`}
             >
               {status.type === "success" ? (
                 <CheckCircle className="w-5 h-5 shrink-0" />

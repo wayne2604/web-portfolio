@@ -25,16 +25,18 @@
   padding: 48px 0 0;
 }
 
-.footer-brand-name {
-  font-size: 28px;
-  font-weight: 700;
-  color: #F8EEB4;
-  margin: 0 0 16px;
-  letter-spacing: 2px;
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: left;
 }
 
-.footer-brand-name span {
-  color: var(--accentColor);
+.footer-brand img {
+  flex-shrink: 0;
 }
 
 .footer-description {
@@ -42,7 +44,7 @@
   line-height: 1.7;
   color: rgba(248, 238, 180, 0.45);
   max-width: 640px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* ── Divider ── */
@@ -215,6 +217,13 @@
     padding-top: 36px;
   }
 
+  .footer-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 16px;
+  }
+
   .footer-nav-grid {
     grid-template-columns: 1fr 1fr;
     gap: 28px;
@@ -235,10 +244,6 @@
   .footer-nav-grid {
     grid-template-columns: 1fr;
     gap: 24px;
-  }
-
-  .footer-brand-name {
-    font-size: 24px;
   }
 
   .footer-description {

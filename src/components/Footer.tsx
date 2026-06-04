@@ -50,7 +50,7 @@ const Footer = () => {
       {/* Top Section: Logo/description + nav grid */}
       <div className="footer-top">
         <div className="footer-brand">
-          <h3 className="footer-brand-name">RW<span>M</span></h3>
+          <img src="/logo-rwm.svg" alt="RWM" style={{ height: "28px" }} />
           <p className="footer-description">
             A passionate full-stack developer dedicated to crafting dynamic web applications
             and delivering seamless user experiences. I transform ideas into compelling digital
