@@ -28,7 +28,7 @@ export function initialFX() {
       filter: "blur(0px)",
       ease: "power3.inOut",
       y: 0,
-      stagger: 0.025,
+      stagger: 0.02,
       delay: 0.3,
     }
   );
@@ -105,8 +105,8 @@ function LoopSkills(skills: any[]) {
       filter: "blur(0px)",
       ease: "power3.inOut",
       top: 0,
-      stagger: 0.025,
-      delay: 0.8,
+      stagger: 0.02,
+      delay: 0.6,
     }
   );
 
@@ -118,13 +118,13 @@ function LoopSkills(skills: any[]) {
 
     tl.to(
       skill.chars,
-      { opacity: 0, top: -80, duration: 1.2, ease: "power3.inOut", stagger: 0.05 }
+      { opacity: 0, top: -80, duration: 1, ease: "power3.inOut", stagger: 0.02 }
     )
     .fromTo(
       nextSkill.chars,
       { opacity: 0, top: 80 },
-      { opacity: 1, top: 0, duration: 1.2, ease: "power3.inOut", stagger: 0.05 },
-      "<"
+      { opacity: 1, top: 0, duration: 1, ease: "power3.inOut", stagger: 0.02 },
+      "<0.3"
     )
     .set({}, {}, `+=${delay}`);
   });

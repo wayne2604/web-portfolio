@@ -233,12 +233,18 @@ h2.landing-info-h2 {
   font-weight: 600;
   position: relative;
   display: grid;
+  overflow: hidden;
 }
 
 .landing-skill {
   grid-area: 1 / 1;
   width: 100%;
   color: #FFF59D;
+  overflow: hidden;
+}
+
+.landing-skill .split-h2 {
+  overflow: hidden;
 }
 
 .gradient-text {
