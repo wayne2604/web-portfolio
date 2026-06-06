@@ -1,7 +1,6 @@
 import { SiNextdotjs, SiTailwindcss, SiKotlin, SiFirebase, SiOpenai, SiJquery, SiPhp, SiGooglegemini, SiMake } from "react-icons/si";
 import { FaReact, FaDatabase, FaNodeJs, FaAndroid, FaPlug } from "react-icons/fa";
 import { WorkflowBuilderCard } from "@/components/ui/workflow-builder-card";
-import { GlowCard } from "@/components/ui/spotlight-card";
 import "./styles/Work.css";
 
 export const projects = [
@@ -224,8 +223,6 @@ export const projects = [
   }
 ];
 
-const glowColors: Array<'blue' | 'purple' | 'green' | 'red' | 'orange'> = ['blue', 'purple', 'green', 'orange', 'red'];
-
 const Work = () => {
   return (
     <div className="work-section" id="work">
@@ -236,14 +233,12 @@ const Work = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center items-start mt-10">
           {projects.map((project, index) => (
-            <GlowCard
+            <div
               key={index}
-              glowColor={glowColors[index % glowColors.length]}
-              customSize={true}
-              className="w-full max-w-sm !p-0 !gap-0 !grid-rows-[1fr] !shadow-none !aspect-auto"
+              className="project-glow-card w-full max-w-sm"
             >
               <WorkflowBuilderCard {...project} className="max-w-full !rounded-none" disableGlow={true} />
-            </GlowCard>
+            </div>
           ))}
         </div>
       </div>

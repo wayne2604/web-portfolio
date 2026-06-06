@@ -44,3 +44,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Vite config timestamp files
+vite.config.ts.timestamp-*
+
+# Stitch debugging files
+stitch-*

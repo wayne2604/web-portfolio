@@ -11,4 +11,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: [
+      "three",
+      "three-stdlib",
+      "@react-three/fiber",
+      "@react-three/drei",
+      "gsap",
+      "@gsap/react"
+    ]
+  }
 });

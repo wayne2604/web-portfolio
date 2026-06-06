@@ -179,8 +179,8 @@ const Loading = ({ percent }: { percent: number }) => {
   // ── Magnifier mask animation (JS-driven for smooth soft edge) ──
   useEffect(() => {
     if (!exiting) return;
-    const screen = screenRef.current;
-    if (!screen) return;
+    const screenEl = screenRef.current;
+    if (!screenEl) return;
 
     let startTime: number | null = null;
     const duration = 1400;
@@ -199,6 +199,7 @@ const Loading = ({ percent }: { percent: number }) => {
     }
 
     function animateMask(time: number) {
+      if (!screenEl) return;
       if (!startTime) startTime = time;
       const elapsed = time - startTime;
       const progress = Math.min(elapsed / duration, 1);
@@ -219,8 +220,8 @@ const Loading = ({ percent }: { percent: number }) => {
         `rgba(0,0,0,0.6) ${softC}px, ` +
         `black ${outer}px)`;
 
-      screen.style.setProperty("-webkit-mask-image", maskVal);
-      screen.style.setProperty("mask-image", maskVal);
+      screenEl.style.setProperty("-webkit-mask-image", maskVal);
+      screenEl.style.setProperty("mask-image", maskVal);
 
       // Update portal ring size (in actual pixels)
       const ringDiameter = radius * 2;

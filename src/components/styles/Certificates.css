@@ -1,0 +1,439 @@
+/* ── Certificates Section ── */
+.certificates-section {
+  position: relative;
+  z-index: 1;
+  background-color: var(--backgroundColor);
+  padding: 120px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.certificates-container {
+  margin: auto;
+}
+
+.certificates-section h2 {
+  font-size: 72px;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 40px;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  text-align: left;
+  background: linear-gradient(0deg, #A7D129, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.certificates-section h2 > span {
+  font-family: "Geist", sans-serif;
+  font-weight: 300;
+}
+
+/* ── Category Filters ── */
+.cert-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 50px;
+}
+
+.cert-filter-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(248, 238, 180, 0.6);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cert-filter-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #F8EEB4;
+}
+
+.cert-filter-btn.active {
+  background: var(--accentColor);
+  border-color: var(--accentColor);
+  color: #000000;
+  box-shadow: 0 4px 20px rgba(167, 209, 41, 0.25);
+  font-weight: 600;
+}
+
+/* ── Certificate Grid ── */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 20px;
+  justify-items: center;
+  align-items: stretch;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cert-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+/* ── Custom Glow Card Wrapper (M2 styling) ── */
+.cert-glow-card {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  background: linear-gradient(135deg, rgba(167, 209, 41, 0.12) 10%, #050505 70%);
+  background-size: 200% 200%;
+  border-radius: 16px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5px; /* Offset for the inner container to show border outline */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: gradient-shift 5s ease-in-out infinite;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover scales card up */
+.cert-glow-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Inner content area */
+.cert-card-inner {
+  position: relative;
+  z-index: 1; /* Sits above glows */
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dual-layer outer glow & inner outline (Corner Radial Gradients) */
+.cert-glow-card::before,
+.cert-glow-card::after {
+  --size: 3px;
+  content: "";
+  position: absolute;
+  top: calc(var(--size) / -2);
+  left: calc(var(--size) / -2);
+  width: calc(100% + var(--size));
+  height: calc(100% + var(--size));
+  background: radial-gradient(circle at 0 0, var(--accentColor), transparent),
+    radial-gradient(circle at 100% 0, var(--accentColor), transparent),
+    radial-gradient(circle at 0 100%, var(--accentColor), transparent),
+    radial-gradient(circle at 100% 100%, var(--accentColor), transparent);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.cert-glow-card::after {
+  --size: 1.5px;
+  z-index: -1;
+}
+
+.cert-glow-card::before {
+  --size: 6px;
+  z-index: -2;
+  filter: blur(10px);
+  animation: blur-animation 3s ease-in-out alternate infinite;
+}
+
+/* ── Inner card details ── */
+.cert-img-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #050505;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cert-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cert-glow-card:hover .cert-img-container img {
+  transform: scale(1.05);
+}
+
+/* Hover overlay */
+.cert-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cert-glow-card:hover .cert-hover-overlay {
+  opacity: 1;
+}
+
+.cert-zoom-icon {
+  font-size: 28px;
+  color: var(--accentColor);
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cert-glow-card:hover .cert-zoom-icon {
+  transform: scale(1);
+}
+
+.cert-hover-overlay span {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #F8EEB4;
+  text-transform: uppercase;
+}
+
+/* Info Details */
+.cert-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px;
+}
+
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  background: rgba(167, 209, 41, 0.05);
+  border: 1px solid rgba(167, 209, 41, 0.15);
+  color: var(--accentColor);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 30px;
+}
+
+.cert-badge-icon {
+  font-size: 12px;
+}
+
+.cert-title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #F8EEB4;
+  margin: 0;
+}
+
+.cert-issuer {
+  font-size: 13px;
+  color: rgba(248, 238, 180, 0.5);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Lightbox Modal ── */
+.cert-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  animation: fadeInModal 0.3s ease forwards;
+}
+
+.cert-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 860px;
+  background: linear-gradient(
+    168deg,
+    rgba(10, 10, 10, 0.98) 0%,
+    rgba(5, 5, 5, 0.99) 50%,
+    rgba(10, 10, 10, 0.98) 100%
+  );
+  border: 2px solid transparent;
+  border-radius: 16px;
+  box-sizing: border-box;
+  box-shadow:
+    0 32px 100px -16px rgba(0, 0, 0, 0.8),
+    0 0 80px -24px rgba(167, 209, 41, 0.15),
+    0 0 40px -8px rgba(248, 238, 180, 0.05);
+  animation: scaleUpModal 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+             rotate-border-glow 5s linear infinite;
+
+  /* rotating border glow properties from reachout-modal */
+  --border-angle: 0deg;
+  background-image:
+    linear-gradient(
+      168deg,
+      rgba(10, 10, 10, 0.98) 0%,
+      rgba(5, 5, 5, 0.99) 50%,
+      rgba(10, 10, 10, 0.98) 100%
+    ),
+    conic-gradient(
+      from var(--border-angle),
+      transparent 25%,
+      rgba(248, 238, 180, 0.5) 37%,
+      rgba(248, 238, 180, 0.7) 40%,
+      rgba(167, 209, 41, 0.5) 43%,
+      transparent 55%,
+      transparent 80%,
+      rgba(248, 238, 180, 0.15) 90%,
+      transparent 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.cert-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F8EEB4;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cert-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--accentColor);
+  transform: rotate(90deg) scale(1.05);
+}
+
+.cert-modal-body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.cert-modal-body img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+
+/* ── Responsive adjustments ── */
+@media only screen and (max-width: 1400px) {
+  .certificates-section h2 {
+    font-size: 60px;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .certificates-section {
+    padding: 80px 0;
+  }
+
+  .certificates-section h2 {
+    font-size: 48px;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cert-modal-body img {
+    max-height: 70vh;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .certificates-section h2 {
+    font-size: 38px;
+    margin-bottom: 24px;
+  }
+  
+  .cert-filter-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+/* ── Keyframe Animations ── */
+@keyframes blur-animation {
+  to {
+    filter: blur(14px);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUpModal {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

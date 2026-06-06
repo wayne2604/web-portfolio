@@ -1,5 +1,14 @@
 import { Mail, ArrowUp, Heart } from 'lucide-react';
-import { FaGithub, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa6';
+import {
+  FaGithub,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTiktok,
+  FaThreads,
+  FaSlack,
+} from 'react-icons/fa6';
 import './styles/Footer.css';
 
 function handleScrollTop() {
@@ -39,9 +48,13 @@ const navigation = [
 const socialLinks = [
   { name: 'Email', href: 'mailto:rmanubag308@gmail.com', icon: Mail },
   { name: 'GitHub', href: 'https://github.com/wayne2604', icon: FaGithub },
-  { name: 'Facebook', href: '#', icon: FaFacebook },
-  { name: 'Instagram', href: '#', icon: FaInstagram },
-  { name: 'LinkedIn', href: '#', icon: FaLinkedin },
+  { name: 'Facebook', href: 'https://www.facebook.com/share/1CfGPicueW/?mibextid=wwXIfr', icon: FaFacebook },
+  { name: 'Instagram', href: 'https://www.instagram.com/wayneer26?igsh=cGp0dzh3cjh5ZTJu&utm_source=qr', icon: FaInstagram },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/rhett-wayne-manubag-207654319/', icon: FaLinkedin },
+  { name: 'YouTube', href: 'https://www.youtube.com/@rwsgaming5534', icon: FaYoutube },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@tamad_naartist', icon: FaTiktok },
+  { name: 'Threads', href: 'https://www.threads.net/@wayneer26', icon: FaThreads },
+  { name: 'Slack', href: 'https://join.slack.com/t/tech-udv9610/shared_invite/zt-40j60ersw-SXMBRTDBmA3a9IiOxbOjnQ', icon: FaSlack },
 ];
 
 const Footer = () => {

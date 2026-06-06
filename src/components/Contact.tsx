@@ -13,6 +13,17 @@ const Contact = () => {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  // Reset form when modal is closed
+  useEffect(() => {
+    if (!modalOpen) {
+      setFormData({ name: "", email: "", message: "" });
+      setStatusMessage("");
+      setSubmitted(false);
+    }
+  }, [modalOpen]);
 
   // ── Typewriter state ──
   const [displayText, setDisplayText] = useState("");
@@ -61,19 +72,43 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:rmanubag308@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(
-      formData.name
-    )}&body=${encodeURIComponent(
-      `From: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    )}`;
-    window.open(mailtoLink, "_blank");
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
+    setLoading(true);
+    setStatusMessage("");
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/rmanubag308@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: `New Portfolio Inquiry from ${formData.name}`,
+          message: formData.message,
+        })
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        setStatusMessage("Message sent successfully! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => {
+          setSubmitted(false);
+          setStatusMessage("");
+        }, 5000);
+      } else {
+        setStatusMessage("Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
+      setStatusMessage("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -188,11 +223,17 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
+                  disabled={loading}
                   className={`reachout-submit ${submitted ? "reachout-submit-sent" : ""}`}
                   data-cursor="disable"
                 >
-                  {submitted ? "SENT!" : "SEND MESSAGE"} <MdArrowForward />
+                  {loading ? "SENDING..." : submitted ? "SENT!" : "SEND MESSAGE"} <MdArrowForward />
                 </button>
+                {statusMessage && (
+                  <p className={`reachout-status-message ${submitted ? "success" : "error"}`}>
+                    {statusMessage}
+                  </p>
+                )}
               </form>
             </div>
 

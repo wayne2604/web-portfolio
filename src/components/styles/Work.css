@@ -120,3 +120,56 @@
 [data-glow] > [data-glow] {
   display: none;
 }
+
+/* ── Custom Running Glow Card ── */
+.project-glow-card {
+  position: relative;
+  width: 100%;
+  max-width: 384px; /* Matches max-w-sm (24rem) */
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 1.5px; /* Border outline thickness */
+  display: flex;
+  background: rgba(10, 10, 10, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.project-glow-card::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 10%,
+    rgba(248, 238, 180, 0.25) 30%,
+    #F8EEB4 45%,
+    #A7D129 55%,
+    rgba(167, 209, 41, 0.25) 70%,
+    transparent 90%
+  );
+  animation: rotateGlow 5s linear infinite;
+  z-index: 1;
+}
+
+/* Make sure the inner card content is positioned on top of the rotating border */
+.project-glow-card > * {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border-radius: 11px !important; /* Slightly smaller to match inner radius */
+  overflow: hidden;
+  background: #050505; /* Solid dark background to prevent bleed-through */
+}
+
+@keyframes rotateGlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
