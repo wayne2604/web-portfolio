@@ -420,6 +420,12 @@ h2.landing-info-h2 {
     width: 100% !important;
     display: block !important;
   }
+
+  .character-model {
+    top: 28% !important;
+    bottom: auto !important;
+    height: 55vh !important;
+  }
 }
 
 /* ── Mobile Responsive Additions ── */
