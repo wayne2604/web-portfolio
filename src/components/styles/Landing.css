@@ -393,25 +393,32 @@ h2.landing-info-h2 {
 /* ── Tablet & Mobile Responsive Additions ── */
 @media screen and (max-width: 1024px) {
   .landing-intro {
-    left: 0 !important;
-    transform: none !important;
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     text-align: center !important;
-    width: 100% !important;
+    width: 100vw !important;
+    max-width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .landing-intro * {
+    text-align: center !important;
+    justify-content: center !important;
   }
   
   .landing-intro h1,
-  .landing-intro h2 {
-    text-align: center !important;
-    width: 100% !important;
-  }
-  
+  .landing-intro h2,
   .landing-intro .split-line,
   .landing-intro span {
     text-align: center !important;
-    justify-content: center !important;
+    width: 100% !important;
+    display: block !important;
   }
 }
 

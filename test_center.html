@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { margin: 0; padding: 0; background: #000; color: #fff; }
+  .landing-container { width: 90%; margin: auto; position: relative; border: 1px solid red; height: 100vh; }
+  
+  .landing-intro {
+    position: absolute;
+    z-index: 9;
+    top: 12%;
+    left: 0;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .landing-intro {
+      left: 0 !important;
+      transform: none !important;
+      text-align: center !important;
+      width: 100% !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      border: 1px solid green;
+    }
+    
+    .landing-intro h1,
+    .landing-intro h2 {
+      text-align: center !important;
+      width: 100% !important;
+      border: 1px solid blue;
+    }
+    
+    .landing-intro .split-line,
+    .landing-intro span {
+      text-align: center !important;
+      justify-content: center !important;
+      border: 1px dashed yellow;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="landing-container">
+  <div class="landing-intro">
+    <h2 aria-label="Hello! I'm">
+      <div class="split-line" aria-hidden="true" style="position: relative; display: block; text-align: start;">
+        <div aria-hidden="true" style="position: relative; display: inline-block;">H</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">e</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">l</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">l</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">o</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">!</div>
+      </div>
+    </h2>
+    <h1 aria-label="RHETT WAYNEMANUBAG">
+      <div class="split-line" aria-hidden="true" style="position: relative; display: block; text-align: start;">
+        <div aria-hidden="true" style="position: relative; display: inline-block;">R</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">H</div>
+        <div aria-hidden="true" style="position: relative; display: inline-block;">E</div>
+      </div>
+    </h1>
+  </div>
+</div>
+</body>
+</html>
