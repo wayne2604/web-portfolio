@@ -173,3 +173,29 @@
     transform: rotate(360deg);
   }
 }
+
+/* ── Mobile Responsive Additions ── */
+@media only screen and (max-width: 768px) {
+  .work-section {
+    padding: 60px 0;
+  }
+
+  .project-glow-card {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .work-section {
+    padding: 40px 0;
+  }
+
+  .work-section h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .project-glow-card {
+    max-width: 100%;
+  }
+}

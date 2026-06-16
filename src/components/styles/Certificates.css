@@ -437,3 +437,68 @@
     transform: scale(1) translateY(0);
   }
 }
+
+/* ── Mobile Responsive Additions ── */
+@media only screen and (max-width: 1024px) {
+  .cert-filter-btn {
+    min-height: 48px;
+    padding: 10px 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cert-modal-close {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .certificates-section {
+    padding: 60px 0;
+  }
+
+  .cert-glow-card {
+    max-width: 100%;
+  }
+
+  .cert-info {
+    padding: 16px;
+  }
+
+  .cert-title {
+    font-size: 15px;
+  }
+
+  .cert-modal-content {
+    width: 95%;
+    border-radius: 12px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .certificates-section {
+    padding: 40px 0;
+  }
+
+  .certificates-section h2 {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
+
+  .cert-filters {
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+
+  .cert-filter-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .cert-grid {
+    gap: 24px 0;
+  }
+}

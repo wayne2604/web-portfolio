@@ -167,7 +167,7 @@ export const WorkflowBuilderCard = ({
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-medium text-emerald-500 hover:text-emerald-400 hover:underline"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-emerald-500 hover:text-emerald-400 hover:underline min-h-[48px] py-2 px-3"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Zap size={12} className="text-emerald-500" />
@@ -179,7 +179,7 @@ export const WorkflowBuilderCard = ({
                         href={github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground hover:underline"
+                        className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-foreground hover:underline min-h-[48px] py-2 px-3"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Code size={12} />
@@ -202,7 +202,7 @@ export const WorkflowBuilderCard = ({
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#F8EEB4] hover:text-[#A7D129] transition-colors"
+                className="text-[#F8EEB4] hover:text-[#A7D129] transition-colors w-12 h-12 inline-flex items-center justify-center"
                 title="View GitHub Code"
                 onClick={(e) => e.stopPropagation()}
               >
@@ -214,7 +214,7 @@ export const WorkflowBuilderCard = ({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#F8EEB4] hover:text-[#A7D129] transition-colors"
+                className="text-[#F8EEB4] hover:text-[#A7D129] transition-colors w-12 h-12 inline-flex items-center justify-center"
                 title="View Live Site"
                 onClick={(e) => e.stopPropagation()}
               >

@@ -5,10 +5,16 @@ import "./styles/Certificates.css";
 
 const certificatesList = [
   {
-    title: "National Certificate II in Visual Graphic Design",
-    issuer: "Technical Education and Skills Development Authority (TESDA)",
-    image: "/Certificates/Tesda.png",
-    category: "Design",
+    title: "AI Engineer Masterclass Bootcamp: 21 Courses in 1",
+    issuer: "Udemy",
+    image: "/Certificates/AI_Engineer.png",
+    category: "AI & ML",
+  },
+  {
+    title: "Vibe Coding",
+    issuer: "Sololearn",
+    image: "/Certificates/Vibe_Coding.png",
+    category: "Programming",
   },
   {
     title: "Artificial Intelligence Fundamentals",
@@ -18,7 +24,7 @@ const certificatesList = [
   },
   {
     title: "AI-Powered Sales Specialist",
-    issuer: "SoloLearn",
+    issuer: "Udemy",
     image: "/Certificates/Ai_Sales.png",
     category: "AI & ML",
   },
@@ -48,25 +54,25 @@ const certificatesList = [
   },
   {
     title: "C++ Programming (Intermediate)",
-    issuer: "SoloLearn",
+    issuer: "Sololearn",
     image: "/Certificates/C++ Intermediate.png",
     category: "Programming",
   },
   {
     title: "Introduction to C++",
-    issuer: "SoloLearn",
+    issuer: "Sololearn",
     image: "/Certificates/Introduction to C++.png",
     category: "Programming",
   },
   {
     title: "Introduction to Python",
-    issuer: "SoloLearn",
+    issuer: "Sololearn",
     image: "/Certificates/Introduction to Python.png",
     category: "Programming",
   },
   {
     title: "Introduction to Visual Graphic Design",
-    issuer: "Cisco Networking Academy / Partner",
+    issuer: "Technical Education and Skills Development Authority (TESDA)",
     image: "/Certificates/Introduction to Visual Graphic Design.png",
     category: "Design",
   }

@@ -771,3 +771,109 @@
     margin-bottom: 28px;
   }
 }
+
+/* ── Mobile Responsive Additions ── */
+@media only screen and (max-width: 1024px) {
+  .reachout-close {
+    width: 48px;
+    height: 48px;
+  }
+
+  .reachout-footer a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .reachout-field label {
+    margin-bottom: 4px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .contact-section {
+    margin-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .contact-headline {
+    font-size: 26px;
+    margin-bottom: 25px;
+    line-height: 1.25;
+  }
+
+  .contact-cta {
+    padding: 12px 24px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+  }
+
+  .contact-availability {
+    font-size: 13px;
+  }
+
+  .contact-description {
+    font-size: 12px;
+  }
+
+  .contact-hero {
+    padding: 20px 0 30px;
+  }
+
+  .contact-footer h3 {
+    font-size: 16px;
+  }
+
+  .contact-footer h5 {
+    font-size: 16px;
+  }
+
+  /* Modal responsive for small mobile */
+  .reachout-modal {
+    width: 97%;
+    padding: 20px 16px;
+    max-height: 92vh;
+  }
+
+  .reachout-title {
+    font-size: 22px;
+    white-space: normal;
+  }
+
+  .reachout-form-card {
+    padding: 20px 16px;
+  }
+
+  .reachout-form-title {
+    font-size: 18px;
+  }
+
+  .reachout-field input,
+  .reachout-field textarea {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .reachout-submit {
+    padding: 16px 0;
+    font-size: 11px;
+  }
+
+  .reachout-action-card {
+    padding: 18px 16px;
+    min-height: 90px;
+  }
+
+  .reachout-card-title {
+    font-size: 16px;
+  }
+
+  .reachout-footer {
+    gap: 20px;
+  }
+}

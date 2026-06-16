@@ -214,7 +214,7 @@ export const projects = [
     description:
       "Stealth RPA & semantic orchestrator that automates complex workflows by combining robotic process automation with AI-driven language understanding.",
     imageUrl: "/Projects/make.png",
-    link: "",
+    link: "https://us2.make.com/public/shared-scenario/avwaALsS6Nk/integration-circleback",
     github: "https://github.com/wayne2604/nexus-ai",
     status: "Active" as const,
     lastUpdated: "1 month ago",
