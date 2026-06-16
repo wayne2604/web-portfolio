@@ -390,6 +390,20 @@ h2.landing-info-h2 {
   }
 }
 
+/* ── Tablet & Mobile Responsive Additions ── */
+@media screen and (max-width: 1024px) {
+  .landing-intro {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+  }
+  
+  .landing-intro .split-line {
+    text-align: center !important;
+  }
+}
+
 /* ── Mobile Responsive Additions ── */
 @media screen and (max-width: 480px) {
   .landing-section {
@@ -398,7 +412,6 @@ h2.landing-info-h2 {
 
   .landing-intro {
     top: 15%;
-    left: 5px;
   }
 
   .landing-intro h2 {
