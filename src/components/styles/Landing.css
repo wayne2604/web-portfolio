@@ -426,6 +426,11 @@ h2.landing-info-h2 {
     bottom: auto !important;
     height: 55vh !important;
   }
+
+  .landing-info {
+    top: 70% !important;
+    bottom: auto !important;
+  }
 }
 
 /* ── Mobile Responsive Additions ── */
