@@ -37,7 +37,45 @@ export const WorkflowBuilderCard = ({
   disableGlow = false,
 }: WorkflowBuilderCardProps) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isInView, setIsInView] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
   const cardRef = React.useRef<HTMLDivElement>(null);
+  const observerCardRef = React.useRef<HTMLDivElement>(null);
+
+  // Track screen size to determine mobile/tablet vs desktop
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Intersection Observer: auto-expand card when scrolled into view on mobile/tablet
+  React.useEffect(() => {
+    if (!isMobile) {
+      setIsInView(false);
+      return;
+    }
+
+    const el = observerCardRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        // Card needs to be ~40% visible to trigger expansion
+        threshold: 0.4,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isMobile]);
+
+  // Determine whether details should be shown
+  const showDetails = isMobile ? isInView : isHovered;
 
   React.useEffect(() => {
     const syncPointer = (e: PointerEvent) => {
@@ -85,6 +123,7 @@ export const WorkflowBuilderCard = ({
 
   return (
     <motion.div
+      ref={observerCardRef}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       whileHover={{ y: -6 }}
@@ -95,7 +134,7 @@ export const WorkflowBuilderCard = ({
         ref={cardRef}
         {...(!disableGlow ? { 'data-glow': true } : {})}
         style={!disableGlow ? getInlineStyles() : { touchAction: 'none' as const }}
-        className={cn("rounded-xl bg-card text-card-foreground flex flex-col justify-between h-full", isHovered && "is-hovered")}
+        className={cn("rounded-xl bg-card text-card-foreground flex flex-col justify-between h-full", showDetails && "is-hovered")}
       >
         {!disableGlow && <div data-glow-child></div>}
 
@@ -135,7 +174,7 @@ export const WorkflowBuilderCard = ({
 
             {/* Animated description and tags section */}
             <AnimatePresence>
-              {isHovered && (
+              {showDetails && (
                 <motion.div
                   key="details"
                   initial="hidden"

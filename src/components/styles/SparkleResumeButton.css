@@ -1,0 +1,488 @@
+/* =============================================
+   Sparkle Resume Button – Mobile/Tablet ONLY
+   Visible at ≤ 1024px, hidden on desktop
+   ============================================= */
+
+/* Hide by default (desktop) */
+.sparkle-resume-wrapper {
+  display: none;
+}
+
+/* Show on mobile/tablet only */
+@media only screen and (max-width: 1024px) {
+  .sparkle-resume-wrapper {
+    display: block;
+    position: absolute;
+    z-index: 99;
+    bottom: 20px;
+    right: 0;
+    --cut: 0.1em;
+    --active: 0;
+    --transition: 0.35s;
+    --spark: 1.8s;
+  }
+
+  .sparkle-resume-wrapper .sp {
+    position: relative;
+  }
+
+  /* ── Main Button ── */
+  .sparkle-resume-wrapper .sparkle-button {
+    --bg: radial-gradient(
+        40% 50% at center 100%,
+        hsl(90 calc(var(--active) * 97%) 72% / var(--active)),
+        transparent
+      ),
+      radial-gradient(
+        80% 100% at center 120%,
+        hsl(80 calc(var(--active) * 97%) 70% / var(--active)),
+        transparent
+      ),
+      hsl(80 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
+    background: var(--bg);
+    font-family: "Geist", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border: 0;
+    cursor: pointer;
+    padding: 0.75em 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+    white-space: nowrap;
+    border-radius: 100px;
+    position: relative;
+    box-shadow:
+      0 0 calc(var(--active) * 3em) calc(var(--active) * 1em)
+        hsl(80 97% 61% / 0.75),
+      0 0em 0 0
+        hsl(80 calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%))
+        inset,
+      0 -0.05em 0 0
+        hsl(80 calc(var(--active) * 97%) calc(var(--active) * 60%)) inset;
+    transition: box-shadow var(--transition), scale var(--transition),
+      background var(--transition);
+    scale: calc(1 + (var(--active) * 0.1));
+  }
+
+  .sparkle-resume-wrapper .sparkle-button:active {
+    scale: 1;
+    transition: 0.3s;
+  }
+
+  /* ── Sparkle Icon ── */
+  .sparkle-resume-wrapper .sparkle {
+    inline-size: 1.25em;
+    translate: -25% -5%;
+  }
+
+  .sparkle-resume-wrapper .sparkle path {
+    color: hsl(0 0% calc((var(--active, 0) * 70%) + var(--base)));
+    transform-box: fill-box;
+    transform-origin: center;
+    fill: currentColor;
+    stroke: currentColor;
+    animation-delay: calc((var(--transition) * 1.5) + (var(--delay) * 1s));
+    animation-duration: 0.6s;
+    transition: color var(--transition);
+  }
+
+  .sparkle-resume-wrapper
+    .sparkle-button:is(:hover, :focus-visible)
+    .sparkle
+    path {
+    animation-name: sparkle-bounce;
+  }
+
+  @keyframes sparkle-bounce {
+    35%,
+    65% {
+      scale: var(--scale);
+    }
+  }
+
+  .sparkle-resume-wrapper .sparkle path:nth-of-type(1) {
+    --scale: 0.5;
+    --delay: 0.1;
+    --base: 40%;
+  }
+
+  .sparkle-resume-wrapper .sparkle path:nth-of-type(2) {
+    --scale: 1.5;
+    --delay: 0.2;
+    --base: 20%;
+  }
+
+  .sparkle-resume-wrapper .sparkle path:nth-of-type(3) {
+    --scale: 2.5;
+    --delay: 0.35;
+    --base: 30%;
+  }
+
+  /* ── Outer Glow Ring ── */
+  .sparkle-resume-wrapper .sparkle-button:before {
+    content: "";
+    position: absolute;
+    inset: -0.2em;
+    z-index: -1;
+    border: 0.25em solid hsl(80 97% 50% / 0.5);
+    border-radius: 100px;
+    opacity: var(--active, 0);
+    transition: opacity var(--transition);
+  }
+
+  /* ── Rotating Spark Edge ── */
+  .sparkle-resume-wrapper .spark {
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    rotate: 0deg;
+    overflow: hidden;
+    mask: linear-gradient(white, transparent 50%);
+    animation: sparkle-flip calc(var(--spark) * 2) infinite steps(2, end);
+  }
+
+  @keyframes sparkle-flip {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  .sparkle-resume-wrapper .spark:before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    aspect-ratio: 1;
+    top: 0%;
+    left: 50%;
+    z-index: -1;
+    translate: -50% -15%;
+    rotate: 0;
+    transform: rotate(-90deg);
+    opacity: calc((var(--active)) + 0.4);
+    background: conic-gradient(from 0deg, transparent 0 340deg, white 360deg);
+    transition: opacity var(--transition);
+    animation: sparkle-rotate var(--spark) linear infinite both;
+  }
+
+  .sparkle-resume-wrapper .spark:after {
+    content: "";
+    position: absolute;
+    inset: var(--cut);
+    border-radius: 100px;
+  }
+
+  /* ── Backdrop Fill ── */
+  .sparkle-resume-wrapper .backdrop {
+    position: absolute;
+    inset: var(--cut);
+    background: var(--bg);
+    border-radius: 100px;
+    transition: background var(--transition);
+  }
+
+  @keyframes sparkle-rotate {
+    to {
+      transform: rotate(90deg);
+    }
+  }
+
+  /* ── Hover / Focus Active State ── */
+  .sparkle-resume-wrapper .sparkle-button:is(:hover, :focus-visible) {
+    --active: 1;
+    --play-state: running;
+  }
+
+  .sparkle-resume-wrapper
+    .sparkle-button:is(:hover, :focus-visible)
+    ~ :is(.bodydrop, .particle-pen) {
+    --active: 1;
+    --play-state: running;
+  }
+
+  /* Also activate on touch (via :active) for mobile */
+  .sparkle-resume-wrapper .sparkle-button:active {
+    --active: 1;
+    --play-state: running;
+  }
+
+  .sparkle-resume-wrapper .sparkle-button:active ~ :is(.bodydrop, .particle-pen) {
+    --active: 1;
+    --play-state: running;
+  }
+
+  @supports (selector(:has(:is(+ *)))) {
+    .sparkle-resume-wrapper:has(
+        .sparkle-button:is(:hover, :focus-visible, :active)
+      ) {
+      --active: 1;
+      --play-state: running;
+    }
+
+    .sparkle-resume-wrapper .bodydrop {
+      display: none;
+    }
+  }
+
+  /* ── Button Text ── */
+  .sparkle-resume-wrapper .text {
+    translate: 2% -6%;
+    letter-spacing: 0.01ch;
+    background: linear-gradient(
+      90deg,
+      hsl(0 0% calc((var(--active) * 100%) + 65%)),
+      hsl(0 0% calc((var(--active) * 100%) + 26%))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: background var(--transition);
+  }
+
+  /* ── Particle Pen ── */
+  .sparkle-resume-wrapper .particle-pen {
+    position: absolute;
+    width: 200%;
+    aspect-ratio: 1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    -webkit-mask: radial-gradient(white, transparent 65%);
+    z-index: -1;
+    opacity: var(--active, 0);
+    transition: opacity var(--transition);
+  }
+
+  .sparkle-resume-wrapper .particle {
+    fill: white;
+    width: calc(var(--size, 0.25) * 1rem);
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(var(--y) * 1%);
+    left: calc(var(--x) * 1%);
+    opacity: var(--alpha, 1);
+    animation: sparkle-float-out calc(var(--duration, 1) * 1s)
+      calc(var(--delay) * -1s) infinite linear;
+    transform-origin: var(--origin-x, 1000%) var(--origin-y, 1000%);
+    z-index: -1;
+    animation-play-state: var(--play-state, paused);
+  }
+
+  .sparkle-resume-wrapper .particle path {
+    fill: hsl(0 0% 90%);
+    stroke: none;
+  }
+
+  .sparkle-resume-wrapper .particle:nth-of-type(even) {
+    animation-direction: reverse;
+  }
+
+  @keyframes sparkle-float-out {
+    to {
+      rotate: 360deg;
+    }
+  }
+
+  /* ── Particle positions (randomized via nth-of-type) ── */
+  .sparkle-resume-wrapper .particle:nth-of-type(1) {
+    --x: 20;
+    --y: 30;
+    --duration: 1.2;
+    --delay: 0.5;
+    --alpha: 0.6;
+    --origin-x: 300%;
+    --origin-y: 500%;
+    --size: 0.4;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(2) {
+    --x: 70;
+    --y: 15;
+    --duration: 1.8;
+    --delay: 1.2;
+    --alpha: 0.8;
+    --origin-x: -200%;
+    --origin-y: 800%;
+    --size: 0.3;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(3) {
+    --x: 45;
+    --y: 60;
+    --duration: 2.2;
+    --delay: 0.8;
+    --alpha: 0.5;
+    --origin-x: 600%;
+    --origin-y: -300%;
+    --size: 0.5;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(4) {
+    --x: 80;
+    --y: 40;
+    --duration: 1.5;
+    --delay: 0.3;
+    --alpha: 0.7;
+    --origin-x: -400%;
+    --origin-y: 200%;
+    --size: 0.35;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(5) {
+    --x: 10;
+    --y: 70;
+    --duration: 2;
+    --delay: 1.5;
+    --alpha: 0.4;
+    --origin-x: 800%;
+    --origin-y: -500%;
+    --size: 0.45;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(6) {
+    --x: 55;
+    --y: 20;
+    --duration: 1.3;
+    --delay: 0.7;
+    --alpha: 0.9;
+    --origin-x: -100%;
+    --origin-y: 400%;
+    --size: 0.3;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(7) {
+    --x: 30;
+    --y: 85;
+    --duration: 1.9;
+    --delay: 1;
+    --alpha: 0.55;
+    --origin-x: 500%;
+    --origin-y: -200%;
+    --size: 0.4;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(8) {
+    --x: 90;
+    --y: 55;
+    --duration: 2.5;
+    --delay: 0.2;
+    --alpha: 0.65;
+    --origin-x: -600%;
+    --origin-y: 100%;
+    --size: 0.25;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(9) {
+    --x: 40;
+    --y: 10;
+    --duration: 1.7;
+    --delay: 1.8;
+    --alpha: 0.75;
+    --origin-x: 200%;
+    --origin-y: 600%;
+    --size: 0.35;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(10) {
+    --x: 65;
+    --y: 75;
+    --duration: 2.1;
+    --delay: 0.6;
+    --alpha: 0.5;
+    --origin-x: -300%;
+    --origin-y: -400%;
+    --size: 0.5;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(11) {
+    --x: 15;
+    --y: 50;
+    --duration: 1.4;
+    --delay: 1.1;
+    --alpha: 0.85;
+    --origin-x: 700%;
+    --origin-y: 300%;
+    --size: 0.3;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(12) {
+    --x: 75;
+    --y: 35;
+    --duration: 2.3;
+    --delay: 0.4;
+    --alpha: 0.6;
+    --origin-x: -500%;
+    --origin-y: -100%;
+    --size: 0.45;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(13) {
+    --x: 50;
+    --y: 90;
+    --duration: 1.6;
+    --delay: 1.4;
+    --alpha: 0.7;
+    --origin-x: 400%;
+    --origin-y: -600%;
+    --size: 0.35;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(14) {
+    --x: 85;
+    --y: 25;
+    --duration: 1.1;
+    --delay: 0.9;
+    --alpha: 0.45;
+    --origin-x: -700%;
+    --origin-y: 500%;
+    --size: 0.4;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(15) {
+    --x: 25;
+    --y: 45;
+    --duration: 2.4;
+    --delay: 1.6;
+    --alpha: 0.8;
+    --origin-x: 100%;
+    --origin-y: -800%;
+    --size: 0.3;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(16) {
+    --x: 60;
+    --y: 65;
+    --duration: 1.8;
+    --delay: 0.1;
+    --alpha: 0.55;
+    --origin-x: -200%;
+    --origin-y: 700%;
+    --size: 0.5;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(17) {
+    --x: 35;
+    --y: 5;
+    --duration: 2;
+    --delay: 1.3;
+    --alpha: 0.65;
+    --origin-x: 600%;
+    --origin-y: 200%;
+    --size: 0.25;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(18) {
+    --x: 95;
+    --y: 80;
+    --duration: 1.5;
+    --delay: 0.8;
+    --alpha: 0.75;
+    --origin-x: -800%;
+    --origin-y: -300%;
+    --size: 0.4;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(19) {
+    --x: 5;
+    --y: 95;
+    --duration: 2.2;
+    --delay: 1.7;
+    --alpha: 0.5;
+    --origin-x: 300%;
+    --origin-y: -700%;
+    --size: 0.35;
+  }
+  .sparkle-resume-wrapper .particle:nth-of-type(20) {
+    --x: 50;
+    --y: 50;
+    --duration: 1.3;
+    --delay: 0.5;
+    --alpha: 0.9;
+    --origin-x: -100%;
+    --origin-y: 100%;
+    --size: 0.45;
+  }
+}

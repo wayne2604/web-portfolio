@@ -103,29 +103,17 @@ div.resume-button span {
 }
 
 /* ── Mobile Responsive Additions ── */
-@media only screen and (max-width: 768px) {
-  .resume-button {
-    transform: none;
-    bottom: 20px;
-    right: 15px;
-    background-color: rgba(5, 5, 5, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1.5px solid var(--accentColor);
-    color: var(--accentColor) !important;
-    padding: 0 16px;
-    border-radius: 30px;
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  }
-  
-  .resume-button:hover {
-    background: var(--accentColor);
-    color: #000000 !important;
+@media only screen and (max-width: 1024px) {
+  /* Hide the original desktop resume button on mobile/tablet */
+  .resume-button-desktop {
+    display: none !important;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  /* If sparkle button isn't shown and the original somehow is, keep mobile styles */
+  .resume-button-desktop {
+    display: none !important;
+  }
+}
+

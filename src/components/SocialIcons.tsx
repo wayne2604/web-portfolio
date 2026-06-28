@@ -8,6 +8,7 @@ import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import SparkleResumeButton from "./SparkleResumeButton";
 
 const SocialIcons = () => {
   useEffect(() => {
@@ -96,8 +97,9 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
+      {/* Original resume button – visible on desktop only */}
       <a
-        className="resume-button"
+        className="resume-button resume-button-desktop"
         href="/CV/CV - RHETT WAYNE MANUBAG.pdf"
         target="_blank"
         rel="noreferrer"
@@ -107,6 +109,8 @@ const SocialIcons = () => {
           <TbNotes />
         </span>
       </a>
+      {/* Sparkle resume button – visible on mobile/tablet only */}
+      <SparkleResumeButton />
     </div>
   );
 };
